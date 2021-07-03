@@ -10,11 +10,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'sml-white': '#FFFFFF',
-        'sml-dark': '#372C2E',
-        'sml-dim': '#563727',
-        'sml-coffee': '#7A431D',
-        'sml-mocha': '#DE9E48',
+        'marigold': '#FD823E',
+        'ghostwhite': '#F0F0F0',
+        'panther': '#1E1F1C',
+        'cool-gray': '#606060'
       },
       fontFamily: {
         poppins: ['Poppins', ...defaultTheme.fontFamily.mono]
