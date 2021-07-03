@@ -84,7 +84,7 @@ export default function Login({ all_users }) {
               <button className="w-full px-5 py-3 rounded-lg bg-marigold text-white transition ease-in-out duration-200 focus:outline-none hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50" type="submit" disabled={isSubmitting}>Login</button>
             </form>
             <div className="flex flex-col items-center w-full max-w-sm space-y-4">
-              <hr className="w-full border border-panther opacity-10" />
+              <hr className="w-full border-t border-panther opacity-10" />
               <Link href="/signup">
                 <a className="w-full px-5 py-3 rounded-lg bg-panther text-white text-center transition ease-in-out duration-200 focus:outline-none hover:opacity-80">Create Account</a>
               </Link>
