@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import withSession from '~/lib/Session'
+import Layout from '~/layouts/default'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -10,9 +11,9 @@ export default function Home({ account }) {
       <Head>
         <title>SML</title>
       </Head>
-      <div className="flex flex-row items-center justify-center w-full max-w-screen-2xl h-screen">
+      <Layout account={ account }>
         <h1 className="font-light text-3xl">Welcome to SML <span className="font-bold text-3xl">{ account.name }</span></h1>
-      </div>
+      </Layout>
     </>
   )
 }
