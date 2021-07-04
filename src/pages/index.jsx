@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import withSession from '~/lib/Session'
 import Layout from '~/layouts/default'
+import ContentEditable from '~/components/ContentEditable'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -12,7 +13,9 @@ export default function Home({ account }) {
         <title>SML</title>
       </Head>
       <Layout account={ account }>
-        <h1 className="font-light text-3xl">Welcome to SML <span className="font-bold text-3xl">{ account.name }</span></h1>
+        <div className="flex flex-col w-full h-full overflow-y-auto px-5 py-5">
+          <ContentEditable account={account} />
+        </div>
       </Layout>
     </>
   )
