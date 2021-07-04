@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       colors: {
         'marigold': '#FD823E',
-        'ghostwhite': '#F0F0F0',
+        'ghostwhite': '#FFFFFF',
         'panther': '#1E1F1C',
         'cool-gray': '#606060'
       },
