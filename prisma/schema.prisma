@@ -35,16 +35,11 @@ model Post {
   comments           Comments[]
   author             User             @relation(fields: [authorId], references: [id])  
   authorId           Int
-  authorImage        String
-  authorName         String
-  authorUsername     String
 }
 
 model Likes {
   id                 Int              @id     @default(autoincrement())
   likerImage         String
-  likerName          String
-  likerUsername      String
   post               Post             @relation(fields: [postId], references: [id])
   postId             Int
   createdAt          String
@@ -53,8 +48,6 @@ model Likes {
 model Comments {
   id                 Int              @id     @default(autoincrement())
   commenterImage     String
-  commenterName      String
-  commenterUsername  String
   post               Post             @relation(fields: [postId], references: [id])
   postId             Int
   createdAt          String
