@@ -22,9 +22,6 @@ export default function ContentEditable({ account }) {
 
   async function handleCreatePost(formData) {
     const authorId = account.id
-    const authorImage = account.image
-    const authorName = account.name
-    const authorUsername = account.username
     const create_post = formData.create_post
     const createdAt = new Date()
 
@@ -39,13 +36,7 @@ export default function ContentEditable({ account }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(
-        { create_post,
-          authorId,
-          authorImage,
-          authorName,
-          authorUsername,
-          createdAt
-        }
+        { create_post, authorId, createdAt }
       )
     })
 
