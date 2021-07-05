@@ -9,7 +9,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export default function Home({ account, people, posts }) {
+export default function Home({ account, people, news, posts }) {
   return (
     <>
       <Head>
@@ -22,7 +22,7 @@ export default function Home({ account, people, posts }) {
         </div>
         <div className="flex flex-col w-full max-w-sm h-full overflow-y-auto px-5 py-5 space-y-2">
           <DisplayPeople people={people} />
-          <DisplayNews people={people} />
+          <DisplayNews news={news} />
         </div>
       </Layout>
     </>
@@ -52,6 +52,10 @@ export const getServerSideProps = withSession(async function ({ req }) {
   //get all users from the server
   const people = await prisma.user.findMany()
 
+  //get all news headlines from newsapi.org
+  const resultNews = await fetch(`https://newsapi.org/v2/top-headlines?country=ph&apiKey=${process.env.NEWS_API_KEY}`)
+  const news = await resultNews.json()
+
   //get all posts from the server
   const posts = await prisma.post.findMany({
     orderBy: [
@@ -78,6 +82,7 @@ export const getServerSideProps = withSession(async function ({ req }) {
     props: {
       account,
       people,
+      news,
       posts
     }
   }
