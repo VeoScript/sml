@@ -39,7 +39,7 @@ model Post {
 
 model Likes {
   id                 Int              @id     @default(autoincrement())
-  likerImage         String
+  liker              String
   post               Post             @relation(fields: [postId], references: [id])
   postId             Int
   createdAt          String
@@ -47,7 +47,7 @@ model Likes {
 
 model Comments {
   id                 Int              @id     @default(autoincrement())
-  commenterImage     String
+  commenter          String
   post               Post             @relation(fields: [postId], references: [id])
   postId             Int
   createdAt          String
