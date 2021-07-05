@@ -11,42 +11,49 @@ generator client {
 }
 
 model User {
-  id            Int             @id   @default(autoincrement())
-  image         String
-  name          String
-  email         String          @unique
-  username      String          @unique
-  password      String
-  bio           String
-  phone         String
-  facebook      String
-  twitter       String
-  instagram     String
-  tiktok        String
-  youtube       String
-  posts         Post[]
+  id                  Int             @id   @default(autoincrement())
+  image               String
+  name                String
+  email               String          @unique
+  username            String          @unique
+  password            String
+  bio                 String
+  phone               String
+  facebook            String
+  twitter             String
+  instagram           String
+  tiktok              String
+  youtube             String
+  posts               Post[]
 }
 
 model Post {
-  id            Int           @id     @default(autoincrement())
-  content       String
-  createdAt     DateTime      @default(now())
-  likes         Likes[]
-  comments      Comments[]
-  author        User          @relation(fields: [authorId], references: [id])  
-  authorId      Int
+  id                 Int              @id     @default(autoincrement())
+  content            String
+  createdAt          DateTime         @default(now())
+  likes              Likes[]
+  comments           Comments[]
+  author             User             @relation(fields: [authorId], references: [id])  
+  authorId           Int
+  authorImage        String
+  authorName         String
+  authorUsername     String
 }
 
 model Likes {
-  id            Int           @id     @default(autoincrement())
-  likers       String
-  post          Post          @relation(fields: [postId], references: [id])
-  postId        Int
+  id                 Int              @id     @default(autoincrement())
+  likerImage         String
+  likerName          String
+  likerUsername      String
+  post               Post             @relation(fields: [postId], references: [id])
+  postId             Int
 }
 
 model Comments {
-  id            Int           @id     @default(autoincrement())
-  commenter     String
-  post          Post          @relation(fields: [postId], references: [id])
-  postId        Int
+  id                 Int              @id     @default(autoincrement())
+  commenterImage     String
+  commenterName      String
+  commenterUsername  String
+  post               Post             @relation(fields: [postId], references: [id])
+  postId             Int
 }
