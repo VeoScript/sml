@@ -7,14 +7,14 @@ export default function ContentEditable({ account }) {
   const router = useRouter()
 
   function refreshData() {
-    router.push(router.asPath)
+    router.replace(router.asPath)
   }
 
   const defaultValues = {
     create_post: ''
   }
 
-  const { register, handleSubmit, reset, setValue, setError, formState: { errors, isSubmitting } } = useForm({ defaultValues })
+  const { register, handleSubmit, reset, setValue, setError, formState: { errors, isSubmitting } } = useForm({ defaultValues  })
 
   useEffect(() => {
     register('create_post', { required: true })
@@ -22,7 +22,11 @@ export default function ContentEditable({ account }) {
 
   async function handleCreatePost(formData) {
     const authorId = account.id
+    const authorImage = account.image
+    const authorName = account.name
+    const authorUsername = account.username
     const create_post = formData.create_post
+    const createdAt = new Date()
 
     if (create_post === '') {
       setError('create_post')
@@ -34,7 +38,15 @@ export default function ContentEditable({ account }) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ create_post, authorId })
+      body: JSON.stringify(
+        { create_post,
+          authorId,
+          authorImage,
+          authorName,
+          authorUsername,
+          createdAt
+        }
+      )
     })
 
     reset()
