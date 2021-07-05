@@ -3,20 +3,26 @@ import withSession from '~/lib/Session'
 import Layout from '~/layouts/default'
 import ContentEditable from '~/components/ContentEditable'
 import DisplayContent from '~/components/DisplayContent'
+import DisplayPeople from '~/components/DisplayPeople'
+import DisplayNews from '~/components/DisplayNews'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export default function Home({ account, posts }) {
+export default function Home({ account, people, posts }) {
   return (
     <>
       <Head>
         <title>SML</title>
       </Head>
       <Layout account={ account }>
-        <div className="flex flex-col w-full h-full overflow-y-auto px-5 py-5 space-y-2">
+        <div className="flex flex-col w-full max-w-full h-full overflow-y-auto px-5 py-5 space-y-2 border-r border-marigold">
           <ContentEditable account={account} />
           <DisplayContent posts={posts} />
+        </div>
+        <div className="flex flex-col w-full max-w-sm h-full overflow-y-auto px-5 py-5 space-y-2">
+          <DisplayPeople people={people} />
+          <DisplayNews people={people} />
         </div>
       </Layout>
     </>
@@ -43,6 +49,9 @@ export const getServerSideProps = withSession(async function ({ req }) {
     }
   })
 
+  //get all users from the server
+  const people = await prisma.user.findMany()
+
   //get all posts from the server
   const posts = await prisma.post.findMany({
     orderBy: [
@@ -68,6 +77,7 @@ export const getServerSideProps = withSession(async function ({ req }) {
   return {
     props: {
       account,
+      people,
       posts
     }
   }
