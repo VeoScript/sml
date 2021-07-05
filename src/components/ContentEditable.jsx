@@ -57,7 +57,7 @@ export default function ContentEditable({ account }) {
   return(
     <div className="content-editable flex flex-col w-full rounded-lg shadow-sm bg-white">
       <div className="flex flex-row w-full space-x-3 px-3 py-3 border border-gray-300 rounded-lg">
-        <img className="w-12 h-12 object-cover rounded-full bg-cool-gray" src={account.image} />
+        <img className="w-full h-12 max-w-[48px] object-cover rounded-full bg-marigold" src={account.image} />
         <div className="flex flex-col w-full space-y-1">
           <form onSubmit={handleSubmit(handleCreatePost)} className="flex flex-row w-full rounded-lg px-3 py-1 border border-marigold bg-white border-opacity-50">
             <div
