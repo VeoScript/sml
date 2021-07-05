@@ -11,11 +11,11 @@ generator client {
 }
 
 model User {
-  id            Int         @id   @default(autoincrement())
+  id            Int             @id   @default(autoincrement())
   image         String
   name          String
-  email         String      @unique
-  username      String      @unique
+  email         String          @unique
+  username      String          @unique
   password      String
   bio           String
   phone         String
@@ -24,4 +24,29 @@ model User {
   instagram     String
   tiktok        String
   youtube       String
+  posts         Post[]
+}
+
+model Post {
+  id            Int           @id     @default(autoincrement())
+  content       String
+  createdAt     DateTime      @default(now())
+  likes         Likes[]
+  comments      Comments[]
+  author        User          @relation(fields: [authorId], references: [id])  
+  authorId      Int
+}
+
+model Likes {
+  id            Int           @id     @default(autoincrement())
+  likers       String
+  post          Post          @relation(fields: [postId], references: [id])
+  postId        Int
+}
+
+model Comments {
+  id            Int           @id     @default(autoincrement())
+  commenter     String
+  post          Post          @relation(fields: [postId], references: [id])
+  postId        Int
 }
