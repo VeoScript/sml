@@ -7,9 +7,6 @@ export default async (req, res) => {
     data: {
       content: req.body.create_post,
       authorId: req.body.authorId,
-      authorImage: req.body.authorImage,
-      authorName: req.body.authorName,
-      authorUsername: req.body.authorUsername,
       createdAt: req.body.createdAt
     }
   })
