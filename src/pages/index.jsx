@@ -18,7 +18,7 @@ export default function Home({ account, people, news, posts }) {
       <Layout account={ account }>
         <div className="flex flex-col w-full max-w-full h-full overflow-y-auto px-5 py-5 space-y-2 border-r border-marigold">
           <ContentEditable account={account} />
-          <DisplayContent posts={posts} />
+          <DisplayContent posts={posts} account={account} />
         </div>
         <div className="flex flex-col w-full max-w-sm h-full overflow-y-auto px-5 py-5 space-y-2">
           <DisplayPeople people={people} />
@@ -67,6 +67,13 @@ export const getServerSideProps = withSession(async function ({ req }) {
       id: true,
       content: true,
       createdAt: true,
+      likes: {
+        select: {
+          id: true,
+          postId: true,
+          liker: true
+        }
+      },
       author: {
         select: {
           id: true,
