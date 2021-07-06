@@ -75,13 +75,13 @@ function ReactionButton({ id, likes, account }) {
   //function for unliking the post
   async function onUnlike(id) {
     const postId = id
-    const likesId = await likes.slice(-1)[0].id //naay slice(-1) para makuha ang last index sa array bleeeh!
+    const liker = account.username
     await fetch('/api/posts/unlike', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ postId, likesId })
+      body: JSON.stringify({ postId, liker })
     })
     router.replace(router.asPath)
     return
