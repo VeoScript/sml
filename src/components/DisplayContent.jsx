@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Moment from 'react-moment'
+import DisplayLikers from './DisplayLikers'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
@@ -23,11 +24,7 @@ export default function DisplayContent({ posts, account }) {
                   <span className="font-normal text-[10px] text-gray-500"><Moment date={ createdAt } fromNow /></span>
                   <div className="flex items-center space-x-1">
                     <span className="font-normal text-[10px] text-gray-500">&bull;</span>
-                    <Link href="/">
-                      <a className="font-normal text-[10px] text-gray-500 transition ease-in-out duration-300 hover:underline">
-                        <span className="font-bold text-[10px] text-marigold">{likes.length}</span>&nbsp;Likes
-                      </a>
-                    </Link>
+                    <DisplayLikers likes={likes} />
                   </div>
                   <div className="flex items-center space-x-1">
                     <span className="font-normal text-[10px] text-gray-500">&bull;</span>
@@ -72,12 +69,13 @@ function ReactionButton({ id, likes, account }) {
       body: JSON.stringify({ postId, liker, createdAt })
     })
     router.replace(router.asPath)
+    return
   }
 
   //function for unliking the post
   async function onUnlike(id) {
     const postId = id
-    const likesId = likes[0].id
+    const likesId = await likes.slice(-1)[0].id //naay slice(-1) para makuha ang last index sa array bleeeh!
     await fetch('/api/posts/unlike', {
       method: 'POST',
       headers: {
@@ -86,6 +84,7 @@ function ReactionButton({ id, likes, account }) {
       body: JSON.stringify({ postId, likesId })
     })
     router.replace(router.asPath)
+    return
   }
 
   return (
