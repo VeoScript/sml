@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 export default async (req, res) => {
   const post = await prisma.likes.deleteMany({
     where: {
-      id: req.body.likesId,
+      liker: req.body.liker,
       postId: req.body.postId
     }
   })
