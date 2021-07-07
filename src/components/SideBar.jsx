@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import WritePost from './WritePost'
 import { useRouter } from 'next/router'
 import { navigations } from "~/static/links"
 
@@ -40,9 +41,7 @@ export default function SideBar({ account }) {
         </div>
       </div>
       <div className="flex flex-col items-center w-full space-y-5">
-        <button className="w-full text-base text-white bg-marigold rounded-full space-x-3 px-5 py-2 mb-5 transition ease-in-out duration-300 hover:bg-opacity-80">
-          <span>Write Post</span>
-        </button>
+        <WritePost account={account} />
         <span className="text-[11px] opacity-80">&copy;&nbsp;{ new Date().getFullYear() } SML #sharemolang, Veoscript.</span>
       </div>
     </div>
